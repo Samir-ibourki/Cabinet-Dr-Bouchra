@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import { HeroSection } from "./components/HeroSection";
 import heroBg from "./assets/hero.jpg";
 import CabinetSection from "./components/CabinetSection";
+import SpecialitesSection from "./components/SpecialitesSection";
 
 const scrollToId = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -42,6 +43,7 @@ export default function App() {
         </div>
       </section>
       <CabinetSection />
+      <SpecialitesSection />
     </div>
   );
 }

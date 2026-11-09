@@ -1,12 +1,11 @@
 :root {
-  --color-navy: #173D55;
-  --color-rose: #CC5778;
-  --color-teal: #3D8CA0;
-  --color-soft-blue: #D4E2EB;
-  --color-background: #F7FAFC;
-  --color-white: #FFFFFF;
-  --color-body: #536A7C;
+  --color-navy: #173d55;
+  --color-rose: #cc5778;
+  --color-teal: #3d8ca0;
+  --color-soft-blue: #d4e2eb;
+  --color-background: #f7fafc;
+  --color-white: #ffffff;
+  --color-body: #536a7c;
 
-  --gradient-medical:
-    linear-gradient(135deg, #F7FAFC, #D4E2EB);
+  --gradient-medical: linear-gradient(135deg, #f7fafc, #d4e2eb);
 }
