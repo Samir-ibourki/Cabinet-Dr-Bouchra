@@ -2,21 +2,13 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Calendar, ChevronDown, Menu, X } from "lucide-react";
 import gsap from "gsap";
 import logo from "../assets/logo.png";
+import { navLinks } from "../utils/utils";
 
 interface NavbarProps {
   activeSection?: string;
   onSelectSection?: (id: string) => void;
   onOpenBooking?: () => void;
 }
-
-const navLinks = [
-  { id: "accueil", label: "Accueil" },
-  { id: "cabinet", label: "Le Cabinet" },
-  { id: "specialites", label: "Spécialités" },
-  { id: "examens", label: "Examens" },
-  { id: "apropos", label: "À propos" },
-  { id: "contact", label: "Contact" },
-];
 
 export default function Navbar({
   activeSection = "accueil",
@@ -33,7 +25,9 @@ export default function Navbar({
 
   /* 1) Animation d'entrée (une seule fois au chargement) */
   useLayoutEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     if (reduce) return;
 
     const ctx = gsap.context(() => {
@@ -151,7 +145,7 @@ export default function Navbar({
 
   return (
     <header ref={headerRef} className="relative z-30 w-full">
-      <div className="w-[92%] sm:w-[90%] max-w-[1400px] h-20 sm:h-24 lg:h-20 mx-auto flex items-center justify-between gap-3 sm:gap-6">
+      <div className="w-[92%] sm:w-[90%] max-w-350 h-20 sm:h-24 lg:h-20 mx-auto flex items-center justify-between gap-3 sm:gap-6">
         {/* Logo */}
         <a
           href="#accueil"

@@ -97,7 +97,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   return (
     <div
       ref={rootRef}
-      className="relative z-10 w-[92%] sm:w-[90%] max-w-[1400px] mx-auto pt-4 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 lg:pb-24"
+      className="relative z-10 w-[92%] sm:w-[90%] max-w-350 mx-auto pt-4 sm:pt-8 lg:pt-12 pb-12 sm:pb-16 lg:pb-24"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {/* colonne left */}
@@ -120,7 +120,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 Respirez mieux.
               </span>
             </span>
-            <span className="block overflow-hidden pb-[0.12em] -mt-[0.12em]">
+            <span className="block overflow-hidden pb-[0.12em] mt-[-0.12em]">
               <span data-hero="line" className="block text-[#CC5778]">
                 Vivez pleinement.
               </span>

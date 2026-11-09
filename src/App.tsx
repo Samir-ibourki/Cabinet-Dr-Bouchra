@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import Navbar from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import heroBg from './assets/hero.jpg';
+import { useState } from "react";
+import Navbar from "./components/Navbar";
+import { HeroSection } from "./components/HeroSection";
+import heroBg from "./assets/hero.jpg";
+import CabinetSection from "./components/CabinetSection";
 
 const scrollToId = (id: string) => {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
 
 export default function App() {
-  const [activeSection, setActiveSection] = useState('accueil');
+  const [activeSection, setActiveSection] = useState("accueil");
 
   const bg = { backgroundImage: `url(${heroBg})` };
 
@@ -19,30 +20,28 @@ export default function App() {
         className="relative w-full overflow-hidden bg-[#E9F2F7]"
         aria-label="Cabinet Dr. Bouchra El Berhichi"
       >
-        {/* Navbar + contenu
-            - < lg  : image agrandie, collée en haut à gauche
-                      => seule la zone claire (sans poumons) est visible derrière le texte
-            - >= lg : image complète (bg-cover), comme avant */}
+        {/* Navbar + contenu*/}
         <div
           style={bg}
-          className="relative flex flex-col min-h-svh bg-no-repeat bg-[position:left_top] bg-[length:auto_165%] md:bg-[length:auto_190%] lg:bg-cover lg:bg-center"
+          className="relative flex flex-col min-h-svh bg-no-repeat bg-top-left bg-size-[auto_165%] md:bg-size-[auto_190%] lg:bg-cover lg:bg-center"
         >
           <Navbar
             activeSection={activeSection}
             onSelectSection={(id) => setActiveSection(id)}
-            onOpenBooking={() => scrollToId('contact')}
+            onOpenBooking={() => scrollToId("contact")}
           />
 
           <div className="flex-1 flex items-center">
             <div className="w-full">
               <HeroSection
-                onOpenBooking={() => scrollToId('contact')}
-                onDiscoverCabinet={() => scrollToId('cabinet')}
+                onOpenBooking={() => scrollToId("contact")}
+                onDiscoverCabinet={() => scrollToId("cabinet")}
               />
             </div>
           </div>
         </div>
       </section>
+      <CabinetSection />
     </div>
   );
 }
