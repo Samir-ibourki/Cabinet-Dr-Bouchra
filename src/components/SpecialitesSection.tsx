@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import doctorImg from "../assets/dr.png";
-import { respiratoryServices } from "../utils/utils";
+import { respiratoryServices, Steps } from "../utils/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,6 +21,13 @@ const COLUMNS = [
     items: respiratoryServices.slice(3, 6),
   },
 ];
+
+const INTRO =
+  "Pneumologue et allergologue, le Dr Bouchra El Berhichi a exercé dans plusieurs établissements hospitaliers, à Dakar, à Marrakech et dans le Sud-Ouest de la France, avant d'ouvrir son cabinet à Inezgane.";
+
+// ⚠️ To confirm with the doctor before publishing
+const APPROACH =
+  "Une écoute attentive, des explications claires et une prise en charge adaptée à chaque patient.";
 
 export default function SpecialitesSection() {
   const rootRef = useRef<HTMLElement>(null);
@@ -104,6 +111,80 @@ export default function SpecialitesSection() {
         ease: "none",
         repeat: -1,
       });
+
+      /* ---- À propos ---- */
+      gsap.fromTo(
+        "[data-anim='about-left'] > *",
+        { y: 24, autoAlpha: 0 },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: "power3.out",
+          clearProps: "all",
+          scrollTrigger: {
+            trigger: "[data-anim='about-left']",
+            start: "top 80%",
+            once: true,
+          },
+        },
+      );
+
+      gsap.fromTo(
+        "[data-anim='about-title']",
+        { y: 24, autoAlpha: 0 },
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.7,
+          ease: "power3.out",
+          clearProps: "all",
+          scrollTrigger: {
+            trigger: "[data-anim='about-title']",
+            start: "top 85%",
+            once: true,
+          },
+        },
+      );
+
+      gsap.fromTo(
+        "[data-anim='about-line']",
+        { scaleY: 0 },
+        {
+          scaleY: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "[data-anim='about-steps']",
+            start: "top 75%",
+            end: "bottom 65%",
+            scrub: true,
+          },
+        },
+      );
+
+      gsap.utils
+        .toArray<HTMLElement>("[data-anim='about-step']")
+        .forEach((li) => {
+          const st = { trigger: li, start: "top 85%", once: true };
+          gsap.fromTo(
+            li.querySelector("[data-anim='about-dot']"),
+            { scale: 0 },
+            { scale: 1, duration: 0.5, ease: "back.out(2)", scrollTrigger: st },
+          );
+          gsap.fromTo(
+            li.querySelector("[data-anim='about-step-body']"),
+            { y: 22, autoAlpha: 0 },
+            {
+              y: 0,
+              autoAlpha: 1,
+              duration: 0.7,
+              ease: "power3.out",
+              clearProps: "all",
+              scrollTrigger: st,
+            },
+          );
+        });
     });
 
     return () => mm.revert();
@@ -220,6 +301,95 @@ export default function SpecialitesSection() {
               aria-hidden="true"
             />
           </a>
+        </div>
+
+        {/* a propos */}
+        <div
+          id="apropos"
+          className="mt-20 scroll-mt-24 border-t border-[#D4E2EB] pt-16 sm:mt-28 sm:pt-20 lg:mt-32 lg:pt-24"
+        >
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20">
+            {/* Left: who she is */}
+            <div
+              data-anim="about-left"
+              className="lg:sticky lg:top-24 lg:self-start"
+            >
+              <p className="flex items-center gap-3 text-[15px] font-semibold text-[#3D8CA0]">
+                <span aria-hidden="true" className="h-px w-8 bg-[#3D8CA0]" />À
+                propos du médecin
+              </p>
+
+              <h3 className="mt-4 text-[clamp(2.2rem,4.6vw,3.8rem)] font-extrabold leading-[1.03] tracking-[-0.03em] text-[#173D55]">
+                Dr Bouchra El Berhichi
+              </h3>
+
+              <p className="mt-3 text-[clamp(1.1rem,1.8vw,1.4rem)] font-semibold tracking-[-0.01em] text-[#CC5778]">
+                Pneumologue &amp; Allergologue
+              </p>
+
+              <p className="mt-6 max-w-136 text-[16px] leading-[1.65] text-[#536A7C] sm:text-[17px]">
+                {INTRO}
+              </p>
+
+              <div className="mt-8 max-w-136 border-t border-[#D4E2EB] pt-6">
+                <p className="text-[14px] font-semibold text-[#173D55]">
+                  Mon approche
+                </p>
+                <p className="mt-2 text-[16px] leading-[1.6] text-[#536A7C]">
+                  {APPROACH}
+                </p>
+              </div>
+            </div>
+
+            {/* Right: career timeline */}
+            <div>
+              <h4
+                data-anim="about-title"
+                className="text-[clamp(1.4rem,2.4vw,1.9rem)] font-bold tracking-[-0.02em] text-[#173D55]"
+              >
+                Un parcours au service de votre santé.
+              </h4>
+
+              <div data-anim="about-steps" className="relative mt-8">
+                <span
+                  data-anim="about-line"
+                  aria-hidden="true"
+                  className="absolute bottom-2 left-1.75 top-2 w-px origin-top bg-[#3D8CA0]/50"
+                />
+
+                <ol>
+                  {Steps.map((s) => (
+                    <li
+                      key={s.title}
+                      data-anim="about-step"
+                      className="relative pb-10 pl-10 last:pb-0"
+                    >
+                      <span
+                        data-anim="about-dot"
+                        aria-hidden="true"
+                        className="absolute left-0 top-1.75 h-3.75 w-3.75 rounded-full border-2 border-[#3D8CA0] bg-[#F8FAFC]"
+                      />
+                      <div data-anim="about-step-body">
+                        <h5 className="text-[20px] font-bold tracking-[-0.01em] text-[#173D55] sm:text-[22px]">
+                          {s.title}
+                        </h5>
+                        <ul className="mt-2 space-y-1">
+                          {s.places.map((p) => (
+                            <li
+                              key={p}
+                              className="text-[16px] leading-normal text-[#536A7C]"
+                            >
+                              {p}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

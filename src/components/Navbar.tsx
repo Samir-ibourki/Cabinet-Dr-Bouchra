@@ -23,7 +23,7 @@ export default function Navbar({
   const desktopNavRef = useRef<HTMLElement>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
-  /* 1) Animation d'entrée (une seule fois au chargement) */
+  /* 1) animation */
   useLayoutEffect(() => {
     const reduce = window.matchMedia(
       "(prefers-reduced-motion: reduce)",

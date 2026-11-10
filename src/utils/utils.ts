@@ -14,9 +14,9 @@ import { AllergologyIcon, LungsIcon } from "../components/MedicalIcons";
 
 export const navLinks = [
   { id: "accueil", label: "Accueil" },
-  { id: "cabinet", label: "Le Cabinet" },
   { id: "specialites", label: "Spécialités" },
-  { id: "apropos", label: "À propos" },
+  { id: "cabinet", label: "Le Cabinet" },
+  { id: "faq", label: "FAQ" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -125,5 +125,59 @@ export const respiratoryServices = [
     label: "Sommeil & ventilation",
     detail: "Prise en charge des troubles du sommeil et de la respiration.",
     icon: Moon,
+  },
+];
+
+export const Steps = [
+  {
+    title: "Expérience hospitalière",
+    places: [
+      "CHU de Dakar",
+      "CHU de Marrakech",
+      "Hôpitaux du Sud-Ouest de France",
+    ],
+  },
+  {
+    title: "Formation en allergologie",
+    places: ["Université Paris-Sorbonne"],
+  },
+  {
+    title: "Formations complémentaires",
+    places: ["Université Paris Cité", "Université de Lille"],
+  },
+  {
+    title: "Activité en cabinet",
+    places: ["Cabinet de Pneumologie & Allergologie, Inezgane"],
+  },
+];
+
+export const FAQS = [
+  {
+    q: "Comment prendre rendez-vous ?",
+    a: "Vous pouvez réserver [par téléphone / par WhatsApp / en ligne]. Le bouton « Prendre rendez-vous » de ce site vous mène directement aux coordonnées du cabinet.",
+  },
+  {
+    q: "Faut-il une ordonnance ou une lettre de mon médecin pour consulter ?",
+    a: "[À compléter : indiquer si une lettre du médecin traitant est nécessaire, utile ou non demandée.]",
+  },
+  {
+    q: "Que dois-je apporter à la consultation ?",
+    a: "Apportez vos anciens examens (radiographies, analyses, comptes rendus), la liste de vos traitements en cours et vos dernières ordonnances. Pour une allergie, notez aussi les situations où les symptômes apparaissent.",
+  },
+  {
+    q: "Comment me préparer à un examen (spirométrie, tests cutanés) ?",
+    a: "[À compléter par le Dr El Berhichi : consignes de préparation pour chaque examen proposé au cabinet.]",
+  },
+  {
+    q: "Le cabinet accepte-t-il la CNSS, l'AMO et les mutuelles ?",
+    a: "[À compléter : organismes acceptés et modalités de remboursement.]",
+  },
+  {
+    q: "Combien de temps dure une consultation ?",
+    a: "[À compléter : durée moyenne d'une consultation et d'un examen.]",
+  },
+  {
+    q: "Comment annuler ou déplacer mon rendez-vous ?",
+    a: "[À compléter : délai à respecter et moyen de contact pour modifier un rendez-vous.]",
   },
 ];

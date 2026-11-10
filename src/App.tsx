@@ -1,16 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import { HeroSection } from "./components/HeroSection";
 import heroBg from "./assets/hero.jpg";
 import CabinetSection from "./components/CabinetSection";
 import SpecialitesSection from "./components/SpecialitesSection";
-
-const scrollToId = (id: string) => {
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-};
+import FAQSection from "./components/FaqSection";
+import ContactSection from "./components/Contact";
+import { navLinks } from "./utils/utils";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("accueil");
+
+  // Scroll to a section (navbar links, hero buttons, "Prendre rendez-vous")
+  const goTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setActiveSection(id);
+  };
+
+  // Updates the active navbar link while the user scrolls
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) =>
+        entries.forEach(
+          (e) => e.isIntersecting && setActiveSection(e.target.id),
+        ),
+      { rootMargin: "-45% 0px -50% 0px" },
+    );
+    navLinks.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
+  }, []);
 
   const bg = { backgroundImage: `url(${heroBg})` };
 
@@ -28,22 +49,24 @@ export default function App() {
         >
           <Navbar
             activeSection={activeSection}
-            onSelectSection={(id) => setActiveSection(id)}
-            onOpenBooking={() => scrollToId("contact")}
+            onSelectSection={goTo}
+            onOpenBooking={() => goTo("contact")}
           />
 
           <div className="flex-1 flex items-center">
             <div className="w-full">
               <HeroSection
-                onOpenBooking={() => scrollToId("contact")}
-                onDiscoverCabinet={() => scrollToId("cabinet")}
+                onOpenBooking={() => goTo("contact")}
+                onDiscoverCabinet={() => goTo("cabinet")}
               />
             </div>
           </div>
         </div>
       </section>
-      <CabinetSection />
       <SpecialitesSection />
+      <CabinetSection />
+      <FAQSection />
+      <ContactSection />
     </div>
   );
 }
